@@ -1,0 +1,135 @@
+﻿<UserControl x:Class="PrescriptionManagerUI.Views.PatientNoteView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PrescriptionManagerUI.Views"
+            mc:Ignorable="d" Background="White" FontSize="24"
+        d:DesignHeight="1000" d:DesignWidth="1500" >
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <TextBlock Text="Patient Notes" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" 
+                   Margin="0 0 0 20" FontSize="48" FontFamily="Segoe UI Light" />
+
+        <ListBox x:Name="Patients"  Height="500"
+                  Width="225" SelectedItem="{Binding SelectedPatient}"  Grid.Row="2" Grid.Column="0">
+            <!--SelectionChanged="Patients_SelectionChanged"-->
+
+
+            <ListBox.ItemTemplate>
+
+                <DataTemplate>
+
+                    <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding FirstName}" />
+                            <TextBlock Text=" " />
+                            <TextBlock Text="{Binding LastName}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Id: " FontSize="14"/>
+                                <TextBlock Text="{Binding Id}" FontSize="14" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="5 0 0 0">
+                                <TextBlock Text="DOB: " FontSize="14" />
+                                <TextBlock Text="{Binding DOB}" FontSize="14" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+
+                </DataTemplate>
+
+            </ListBox.ItemTemplate>
+
+
+        </ListBox>
+
+        <StackPanel Orientation="Vertical" Grid.Column="1" Grid.Row="2" Margin="50 0 0 0" HorizontalAlignment="Center">
+            <Button x:Name="ViewNotes" Padding="5">View Notes</Button>
+        </StackPanel>
+
+
+        <ListBox x:Name="Notes"  Height="500"
+                  MinWidth="350" SelectedItem="{Binding SelectedNote}"  Grid.Row="2" Grid.Column="4" Grid.ColumnSpan="3">
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+
+                        <TextBlock Text="{Binding Title}" FontSize="14"/>
+
+                        <TextBlock Text="{Binding Text}" FontSize="12"/>
+                        
+                        <StackPanel Orientation="Horizontal">
+                           
+                            <StackPanel Orientation="Horizontal" >
+                                <TextBlock Text="Author: " FontSize="9" />
+                                <TextBlock Text="{Binding AuthorId}" FontSize="9" />
+                                <TextBlock Text=" " />
+                                <TextBlock Text="{Binding CreatedDate}" FontSize="9" />
+                            </StackPanel>
+                        </StackPanel>
+                    </StackPanel>
+
+                </DataTemplate>
+
+            </ListBox.ItemTemplate>
+
+
+        </ListBox>
+
+        <ListBox Grid.Row="2" Grid.Column="8" Height="500"  Margin="10 0 0 0">
+            <StackPanel>
+
+            
+
+                <TextBlock Text="Title" Grid.Row="3" Grid.Column="3" Margin="0 0 5 10" />
+                <TextBox x:Name="AddNoteTitle" IsEnabled="{Binding EnablePrescriptionController}" Grid.Row="3" Grid.Column="4" MinWidth="100" Margin="0 0 5 10"/>
+
+                <TextBlock Text="Note: " Grid.Row="4" Grid.Column="3" Margin="0 0 5 10" />
+                <TextBox x:Name="AddNoteText" FontSize="14" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible" 
+                         MaxWidth="400" MinHeight="225" Grid.Row="4" Grid.Column="4"  Margin="0 0 5 10"/>
+                <!-- <TextBlock Text="mg" Grid.Row="4"  Grid.Column="5" Margin="10 0 0 0" FontSize="16" VerticalAlignment="Center" FontStyle="Italic"/> -->
+
+                <TextBlock Text="Author " Grid.Row="5" Grid.Column="3"/>
+                <TextBox x:Name="PrescriberId" Text="{Binding PrescriberId}" Grid.Row="5" Grid.Column="4" 
+                 MinWidth="350" Margin="0 0 5 10" IsReadOnly="True"/>
+
+
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"   Grid.RowSpan="1" Margin="30 10 10 0">
+                    <Button x:Name="AddNote" Margin="30 0 20 0" Padding="5 5">Add</Button>
+                    <Button x:Name="CancelNote" Margin="10 0 20 0" Padding="5 5">Cancel</Button>
+                </StackPanel>
+
+
+            </StackPanel>
+        </ListBox>
+    </Grid>
+</UserControl>
