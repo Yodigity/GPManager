@@ -14,5 +14,5 @@ the likelihood of patients being unable to have their prescriptions renewed, the
 #License
 
 
-MIT © Aaron Gokani
+GPU © Aaron Gokani
   
